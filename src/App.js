@@ -33,7 +33,7 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route exact path="/home" element={<Home />} />
-            <Route path="/about" element={<UserManagment />} />
+            <Route path="/usermanagment" element={<UserManagment />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/systemsection" element={<SystemSections />} />
             <Route path="/supportstatuses" element={<SupportStatuses />} />
@@ -44,6 +44,7 @@ const App = () => {
       ) : (
         <>
           <Routes>
+             <Route path="/" element={<Loginform/>}/>
             <Route path="/login" element={<Loginform />} />
             <Route path="/registration" element={<Registrationform />} />
           </Routes>

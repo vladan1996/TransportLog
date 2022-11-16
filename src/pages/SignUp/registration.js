@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import './registration.css';
+import { useNavigate } from 'react-router-dom';
 
 const Registrationform = () => {
         const [name, setName] = useState("");
         const [password, setpassword] = useState("");
         const [email, setEmail] = useState("");
+        const navigate = useNavigate();
 
         const handleNameChange = (value) => {
                 setName(value);
@@ -30,6 +32,7 @@ const Registrationform = () => {
         const url = "https://localhost:7034/api/Authenticate/register"
         axios.post(url, data).then((result) =>{
                 alert(result.data);
+               
         }).catch((error) => {
                 alert(error);
         })

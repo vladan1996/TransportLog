@@ -106,7 +106,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/about" exact>
+              <NavLink className="nav-link" to="/usermanagment" exact>
                 <i 
                 className="far fa-address-book">
                 </i>User Managment
