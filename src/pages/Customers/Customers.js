@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from 'axios'
 import "./Customers.css"
 import DataGrid, {
   Column,
@@ -7,51 +8,49 @@ import DataGrid, {
   Paging,
   Lookup,
   Form,
+  
 } from 'devextreme-react/data-grid';
+import { Button } from 'devextreme-react/button';
 import CheckBox from 'devextreme-react/check-box';
 import 'devextreme-react/text-area';
 import { Item } from 'devextreme-react/form';
-import { employees, states } from '../data';
+import useCustomerData from './useCustomerData';
+import { states } from '../dataStates';
 
 const notesEditorOptions = { height: 100 };
 
-class Customers  extends React.Component {
+const Customers = () => {
 
-  constructor(props) {
-    super(props);
+  const [checkBoxValue, setCheckBoxValue] = useState(false);
+  const {customer} = useCustomerData();
+  
+const handleValueChange = () => setCheckBoxValue(prev => !prev); 
 
-    this.state = {
-        checkBoxValue: false
-    };
-    this.handleValueChange = this.handleValueChange.bind(this);
+const handleAddCustomer = () => {
+  console.log('Radi');
 }
-
-handleValueChange(e) {
-    this.setState({
-        checkBoxValue: e.value
-    });
-}
-
-
-
-  render() {
     return (
       <>
       <h2 className='text-center mt-5'>Customer List</h2>
       <div id="data-grid-demo" className='data-grid-demo'>
+   
+
         <DataGrid
-          dataSource={employees}
+          dataSource={customer}
           keyExpr="ID"
           showBorders={true}
         >
           <Paging enabled={false} />
-        
+
           <Editing
             mode="popup"
             allowUpdating={true}
             allowAdding={true}
-            allowDeleting={true}>
-            <Popup title="Create New Customer" showTitle={true} width={700} height={525} />
+            allowDeleting={true}
+            >
+        
+            <Popup title="Create New Customer" showTitle={true} width={700} height={525}  />
+            
             <Form>
               <Item itemType="group" colCount={2} colSpan={2}>
                 <Item dataField="FirstName" />
@@ -60,27 +59,26 @@ handleValueChange(e) {
                 <Item itemType="group" colCount={2} colSpan={2}>
               <CheckBox
                 text="IsActive"
-                value={this.state.checkBoxValue}
-                onValueChanged={this.handleValueChange}
+                onChange={handleValueChange}
             />
             </Item>
               </Item>
               <Item itemType="group" caption="Home Address" colCount={2} colSpan={2}>
-                <Item dataField="StateID" />
                 <Item dataField="Country" />
                 <Item dataField="Address" />
-
               </Item>
             </Form>
           </Editing>
           
-          <Column dataField="No." caption="No." width={70} />
+          <Column dataField="Id" caption="ID" width={270} />
           <Column dataField="FirstName" />
           <Column dataField="LastName" />
           <Column dataField="Address" />
-          <Column dataField="StateID" caption="Country" width={125}>
-            <Lookup dataSource={states} valueExpr="ID" displayExpr="Name" />
-          </Column>
+          <Column dataField="Country" width={125}/>
+            {/* <Lookup
+             dataSource={} 
+             valueExpr="ID" displayExpr="Name" />
+          </Column> */} 
           <Column dataField="City" />
           <Column dataField="Phone" />
           <Column dataField="IsActive" />
@@ -89,7 +87,7 @@ handleValueChange(e) {
       </div>
       </>
     );
-  }
+  // }
 }
 
 export default Customers;
