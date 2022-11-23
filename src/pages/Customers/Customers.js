@@ -16,6 +16,7 @@ import 'devextreme-react/text-area';
 import { Item } from 'devextreme-react/form';
 import useCustomerData from './useCustomerData';
 import { states } from '../dataStates';
+import {insertCustomer} from "./customerService";
 
 const notesEditorOptions = { height: 100 };
 
@@ -24,11 +25,31 @@ const Customers = () => {
   const [checkBoxValue, setCheckBoxValue] = useState(false);
   const {customer} = useCustomerData();
   
-const handleValueChange = () => setCheckBoxValue(prev => !prev); 
+// const handleValueChange = () => {
+//   setCheckBoxValue(prev => !prev); 
+// } 
 
-const handleAddCustomer = () => {
-  console.log('Radi');
+
+
+function handleAddCustomer(state)
+{
+  console.log('state')
+  console.log(state)
+  if(state.changes[0].type === "insert")
+  {
+    const tmp = {...state.changes[0].data, isActive: checkBoxValue}
+    insertCustomer(tmp);
+  }else if(state.changes[0].type === "edit"){
+    console.log(state.changes[0].type)
+  }else if(state.changes[0].type === "remove")
+  {
+
+  }
+ 
 }
+// const handleAddCustomer = () => {
+//   console.log('Radi');
+// }
     return (
       <>
       <h2 className='text-center mt-5'>Customer List</h2>
@@ -37,8 +58,9 @@ const handleAddCustomer = () => {
 
         <DataGrid
           dataSource={customer}
-          keyExpr="ID"
+          keyExpr="Id"
           showBorders={true}
+          onSaved={handleAddCustomer}
         >
           <Paging enabled={false} />
 
@@ -48,7 +70,6 @@ const handleAddCustomer = () => {
             allowAdding={true}
             allowDeleting={true}
             >
-        
             <Popup title="Create New Customer" showTitle={true} width={700} height={525}  />
             
             <Form>
@@ -59,12 +80,14 @@ const handleAddCustomer = () => {
                 <Item itemType="group" colCount={2} colSpan={2}>
               <CheckBox
                 text="IsActive"
-                onChange={handleValueChange}
+                value={checkBoxValue}
+                onValueChange={()=>setCheckBoxValue(prev=>!prev)}
             />
             </Item>
               </Item>
               <Item itemType="group" caption="Home Address" colCount={2} colSpan={2}>
                 <Item dataField="Country" />
+                <Item dataField="City" />
                 <Item dataField="Address" />
               </Item>
             </Form>

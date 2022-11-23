@@ -11,7 +11,6 @@ const[customer, setCustomers] = useState([]);
 const getCustomers = () =>{
     axios.get(`${API_URL}/getCustomers`)
         .then((json)=> {
-            console.log("dqrq");
             console.log(json)
             setCustomers(json.data)
         })
