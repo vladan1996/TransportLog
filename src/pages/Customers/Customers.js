@@ -16,7 +16,7 @@ import 'devextreme-react/text-area';
 import { Item } from 'devextreme-react/form';
 import useCustomerData from './useCustomerData';
 import { states } from '../dataStates';
-import {insertCustomer} from "./customerService";
+import {insertCustomer, updateCustomer,deleteCustomer} from "./customerService";
 
 const notesEditorOptions = { height: 100 };
 
@@ -39,17 +39,20 @@ function handleAddCustomer(state)
   {
     const tmp = {...state.changes[0].data, isActive: checkBoxValue}
     insertCustomer(tmp);
-  }else if(state.changes[0].type === "edit"){
-    console.log(state.changes[0].type)
+  }else if(state.changes[0].type === "update"){
+    const obj = {...state.changes[0].data, isActive : checkBoxValue}
+    console.log('stateedit')
+    console.log(obj)
+    updateCustomer(obj);
   }else if(state.changes[0].type === "remove")
   {
-
+    deleteCustomer(state.changes[0].key);
+    console.log('stateDelete')
+    console.log(state)
   }
  
 }
-// const handleAddCustomer = () => {
-//   console.log('Radi');
-// }
+
     return (
       <>
       <h2 className='text-center mt-5'>Customer List</h2>
@@ -97,11 +100,11 @@ function handleAddCustomer(state)
           <Column dataField="FirstName" />
           <Column dataField="LastName" />
           <Column dataField="Address" />
-          <Column dataField="Country" width={125}/>
-            {/* <Lookup
-             dataSource={} 
-             valueExpr="ID" displayExpr="Name" />
-          </Column> */} 
+          <Column dataField="Country" width={125}>
+          <Lookup
+             dataSource={states} 
+             valueExpr="Name" displayExpr="Name" />
+          </Column>
           <Column dataField="City" />
           <Column dataField="Phone" />
           <Column dataField="IsActive" />
