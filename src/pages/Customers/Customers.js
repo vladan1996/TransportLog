@@ -29,6 +29,29 @@ const Customers = () => {
 //   setCheckBoxValue(prev => !prev); 
 // } 
 
+function customizeItem(item){
+  if (item.dataField === "FirstName" || item.dataField === "LastName" || item.dataField === "Country" || item.dataField === "Address"|| item.dataField === "City" ) {
+    item.validationRules = [{
+        type: "required",
+        message: "The value is required"
+    }, {
+        type: "pattern",
+        pattern: "^[a-zA-Z]+$",
+    }]
+}else if(item.dataField === "Phone"){
+  item.validationRules = [{
+    type: "required",
+    message: "Phone number is required!"
+}]
+}else if(item.dataField === "Address"){
+  item.validationRules = [{
+    type: "required",
+    message: "City is required!"
+}]
+}
+}
+
+
 
 
 function handleAddCustomer(state)
@@ -75,7 +98,7 @@ function handleAddCustomer(state)
             >
             <Popup title="Create New Customer" showTitle={true} width={700} height={525}  />
             
-            <Form>
+            <Form customizeItem={customizeItem}>
               <Item itemType="group" colCount={2} colSpan={2}>
                 <Item dataField="FirstName" />
                 <Item dataField="LastName" />

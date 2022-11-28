@@ -73,7 +73,7 @@ const Navbar = () => {
     
       <nav className="navbar navbar-expand-lg navbar-mainbg">
     
-      <NavLink className="navbar-brand navbar-logo" to="/" exact>
+      <NavLink className="navbar-brand navbar-logo" to="/">
       <img src="truck.png" style={{width:"33px",height:"33px", marginRight:"10px"}} />
         Transport Log
       </NavLink>
@@ -98,7 +98,7 @@ const Navbar = () => {
             </div>
             
             <li className="nav-item active">
-              <NavLink className="nav-link" to="/home" exact>
+              <NavLink className="nav-link" to="/home">
                 <i 
                 className="fas fa-tachometer-alt">
                 </i>Home
@@ -106,7 +106,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/usermanagment" exact>
+              <NavLink className="nav-link" to="/usermanagment">
                 <i 
                 className="far fa-address-book">
                 </i>User Managment
@@ -114,28 +114,28 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/customers" exact>
+              <NavLink className="nav-link" to="/customers">
                 <i 
                 className="far fa-clone">
                 </i>Customers
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/systemsection" exact>
+              <NavLink className="nav-link" to="/systemsection">
                 <i 
                 className="far fa-chart-bar">
                 </i>System Sections
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/supportstatuses" exact>
+              <NavLink className="nav-link" to="/supportstatuses">
                 <i 
                 className="far fa-copy">
                 </i>Support Statuses
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/docks" exact>
+              <NavLink className="nav-link" to="/docks">
                 <i 
                 className="far fa-copy">
                 </i>Docks
@@ -143,14 +143,14 @@ const Navbar = () => {
             </li>
              {currentUser ? (
             <li className="nav-item">
-              <NavLink className="nav-link" to="/logout" exact onClick={logOut}>
+              <NavLink className="nav-link" to="/logout" onClick={logOut}>
                 <i 
                 className="far fa-copy">
                 </i>Logout
               </NavLink>
             </li> ) : (
                <li className="nav-item">
-               <NavLink className="nav-link" to="/login" exact>
+               <NavLink className="nav-link" to="/login">
                  <i 
                  className="far fa-copy">
                  </i>Login

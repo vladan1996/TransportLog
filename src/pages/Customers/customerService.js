@@ -13,7 +13,7 @@ export function insertCustomer(customer){
 
 export function updateCustomer(customer){
     
-    axios.post(API_URL + "/updateCustomer",customer)
+    axios.put(API_URL + "/updateCustomer",customer)
     .then(res=>console.log(res))
     .catch(err => console.log(err))
 }

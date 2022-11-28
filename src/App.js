@@ -30,7 +30,7 @@ const App = () => {
     <>
       {currentUser ? (
         <>
-          <Navbar />
+          <Navbar /> 
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/usermanagment" element={<UserManagment />} />
@@ -44,7 +44,7 @@ const App = () => {
       ) : (
         <>
           <Routes>
-             <Route path="/" element={<Loginform/>}/>
+            <Route path="/" element={<Loginform/>}/>
             <Route path="/login" element={<Loginform />} />
             <Route path="/registration" element={<Registrationform />} />
           </Routes>
