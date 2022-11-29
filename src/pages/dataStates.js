@@ -79,7 +79,7 @@ export const states = [{
   Name: 'Hrvatska',
 }, {
   ID: 27,
-  Name: 'Bosna i Hercegovina',
+  Name: 'BiH',
 }, {
   ID: 28,
   Name: 'Slovacka',
@@ -115,7 +115,7 @@ export const states = [{
   Name: 'Slovenija',
 }, {
   ID: 39,
-  Name: 'Crna Gora',
+  Name: 'CrnaGora',
 }, {
   ID: 40,
   Name: 'Kipar',
@@ -139,7 +139,7 @@ export const states = [{
   Name: 'Lihtenstajn',
 }, {
   ID: 47,
-  Name: 'San Marino',
+  Name: 'SanMarino',
 }, {
   ID: 48,
   Name: 'Monako',

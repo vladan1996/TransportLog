@@ -121,13 +121,6 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/systemsection">
-                <i 
-                className="far fa-chart-bar">
-                </i>System Sections
-              </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink className="nav-link" to="/supportstatuses">
                 <i 
                 className="far fa-copy">

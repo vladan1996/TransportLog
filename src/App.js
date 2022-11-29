@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 
 import Customers from "./pages/Customers/Customers";
 import SupportStatuses from "./pages/SupportStatuses/SupportStatuses";
-import SystemSections from "./pages/SystemSections/SystemSections";
 import Logout from "./pages/Logout/Logout";
 import UserManagment from "./pages/UserManagment/UserManagment";
 import Home from "./pages/Home/Home";
@@ -35,7 +34,6 @@ const App = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/usermanagment" element={<UserManagment />} />
             <Route path="/customers" element={<Customers />} />
-            <Route path="/systemsection" element={<SystemSections />} />
             <Route path="/supportstatuses" element={<SupportStatuses />} />
             <Route path="/docks" element={<Docks />} />
             <Route path="/logout" element={<Logout />} />

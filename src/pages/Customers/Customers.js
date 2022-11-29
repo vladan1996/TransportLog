@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import axios from 'axios'
 import "./Customers.css"
 import DataGrid, {
   Column,
@@ -10,7 +9,6 @@ import DataGrid, {
   Form,
   
 } from 'devextreme-react/data-grid';
-import { Button } from 'devextreme-react/button';
 import CheckBox from 'devextreme-react/check-box';
 import 'devextreme-react/text-area';
 import { Item } from 'devextreme-react/form';
@@ -23,20 +21,16 @@ const notesEditorOptions = { height: 100 };
 const Customers = () => {
 
   const [checkBoxValue, setCheckBoxValue] = useState(false);
+  
   const {customer} = useCustomerData();
   
-// const handleValueChange = () => {
-//   setCheckBoxValue(prev => !prev); 
-// } 
+  console.log(customer ,"customer")
 
 function customizeItem(item){
-  if (item.dataField === "FirstName" || item.dataField === "LastName" || item.dataField === "Country" || item.dataField === "Address"|| item.dataField === "City" ) {
+  if (item.dataField === "FirstName" || item.dataField === "LastName" || item.dataField === "Country" || item.dataField === "City" ) {
     item.validationRules = [{
         type: "required",
         message: "The value is required"
-    }, {
-        type: "pattern",
-        pattern: "^[a-zA-Z]+$",
     }]
 }else if(item.dataField === "Phone"){
   item.validationRules = [{
@@ -58,10 +52,14 @@ function handleAddCustomer(state)
 {
   console.log('state')
   console.log(state)
+  if(state.changes.length === 0){
+    alert("You must change value of other field")
+}else{
+  
   if(state.changes[0].type === "insert")
   {
     const tmp = {...state.changes[0].data, isActive: checkBoxValue}
-    insertCustomer(tmp);
+    insertCustomer(tmp)
   }else if(state.changes[0].type === "update"){
     const obj = {...state.changes[0].data, isActive : checkBoxValue}
     console.log('stateedit')
@@ -73,6 +71,7 @@ function handleAddCustomer(state)
     console.log('stateDelete')
     console.log(state)
   }
+}
  
 }
 
@@ -104,7 +103,7 @@ function handleAddCustomer(state)
                 <Item dataField="LastName" />
                 <Item dataField="Phone" />  
                 <Item itemType="group" colCount={2} colSpan={2}>
-              <CheckBox
+                <CheckBox
                 text="IsActive"
                 value={checkBoxValue}
                 onValueChange={()=>setCheckBoxValue(prev=>!prev)}
@@ -136,7 +135,6 @@ function handleAddCustomer(state)
       </div>
       </>
     );
-  // }
 }
 
 export default Customers;
