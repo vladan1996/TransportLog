@@ -2,7 +2,7 @@ import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.light.css";
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Customers from "./pages/Customers/Customers";
 import SupportStatuses from "./pages/SupportStatuses/SupportStatuses";
 import Logout from "./pages/Logout/Logout";

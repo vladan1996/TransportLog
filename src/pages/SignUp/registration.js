@@ -1,73 +1,97 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './registration.css';
 import { useNavigate } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+import Feedback from 'react-bootstrap/esm/Feedback';
 
 const Registrationform = () => {
-        const [name, setName] = useState("");
-        const [password, setpassword] = useState("");
-        const [email, setEmail] = useState("");
-        const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [password, setpassword] = useState("");
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const [validated, setValidated] = useState(false);
 
-        const handleNameChange = (value) => {
-                setName(value);
-        };
+  const handleNameChange = (value) => {
+    setName(value);
+  };
 
-        const handlePasswordChange = (value) => {
-                setpassword(value);
-        };
+  const handlePasswordChange = (value) => {
+    setpassword(value);
+  };
 
-        const handleEmailChange = (value) => {
-                setEmail(value);
-        };
+  const handleEmailChange = (value) => {
+    setEmail(value);
+  };
 
-        const handleSave = () => {
-                const data = {
-                     UserName: name,
-                     Password: password,
-                     Email: email
-           };
-
-
-        const url = "https://localhost:7034/api/Authenticate/register"
-        axios.post(url, data).then((result) =>{
-                alert(result.data);
-               
-        }).catch((error) => {
-                alert(error);
-        })
-}
-        return (
-      <div className="Regi-form-container">
-      <form className="Regi-form" onSubmit={handleSave}>
+  const handleSave = (e) => {
+    const data = {
+      UserName: name,
+      Password: password,
+      Email: email
+    };
+    e.preventDefault();
+    try {
+      const form = e.currentTarget;
+      if (form.checkValidity() === false) {
+        e.stopPropagation();
+      }
+      setValidated(true);
+      const url = "https://localhost:7034/api/Authenticate/register"
+      axios.post(url, data).then((result) => {
+        alert(result.data);
+      }).catch((error) => {
+        alert(error);
+      })
+    }finally{
+    }
+  }
+  return (
+    <div className="Regi-form-container">
+      <Form noValidate validated={validated} className="Regi-form" onSubmit={handleSave}>
         <div className="Regi-form-content">
           <h3 className="Regi-form-title">Registration User</h3>
           <div className="form-group mt-3">
             <label>User name</label>
             <input
+              required
               type="text"
               className="form-control mt-1"
               placeholder="User name"
               onChange={(e) => handleNameChange(e.target.value)}
             />
+            <Feedback>Data is valid!</Feedback>
+            <Feedback type="invalid">
+              Please insert username.
+            </Feedback>
           </div>
           <div className="form-group mt-3">
             <label>Password</label>
             <input
+              required
               type="password"
               className="form-control mt-1"
               placeholder="Enter password"
               onChange={(e) => handlePasswordChange(e.target.value)}
             />
+            <Feedback>Data is valid!</Feedback>
+            <Feedback type="invalid">
+              Please insert password.
+            </Feedback>
           </div>
           <div className="form-group mt-3">
             <label>Email address</label>
             <input
+              required
               type="email"
               className="form-control mt-1"
               placeholder="Enter email"
               onChange={(e) => handleEmailChange(e.target.value)}
             />
+            <Feedback>Data is valid!</Feedback>
+            <Feedback type="invalid">
+              Please insert email.
+            </Feedback>
           </div>
           <div className="pt-3">
             <button type="submit" className="btn btn-primary w-100">
@@ -75,12 +99,12 @@ const Registrationform = () => {
             </button>
           </div>
           <p className="forgot-password text-center mt-4">
-             <a href="/login">Back</a>
+            <a href="/login">Back</a>
           </p>
         </div>
-      </form>
+      </Form>
     </div>
-        );
+  );
 }
 
 export default Registrationform;

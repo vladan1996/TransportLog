@@ -9,8 +9,6 @@ export function insertCustomer(customer){
     axios.post(API_URL + "/insertCustomer", customer).then(res=>console.log(res)).catch(err => console.log(err)) 
 }
   
-
-
 export function updateCustomer(customer){
     
     axios.put(API_URL + "/updateCustomer",customer)
@@ -24,22 +22,4 @@ export function deleteCustomer(Id){
     .then(res=>console.log(res))
     .catch(err => console.log(err))
 }
-
-
-
-// export function deleteCustomer(key){
-//      return fetch(API_URL + "/deleteCustomer/"+ key,{
-//         method:"delete",
-//      }).then(data => {
-//         console.log(data)
-//         return data;
-//      })
-
-// }
-
-//update
-
-
-
-//delete 
 
