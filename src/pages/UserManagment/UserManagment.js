@@ -18,6 +18,7 @@ import Useusermanagementdata from './useUserManagementData';
 const notesEditorOptions = { height: 100 };
 
 const Usermanagment = () => {
+
   const [checkBoxValue, setCheckBoxValue] = useState(false);
   
   const {userManagement} = Useusermanagementdata();
@@ -53,10 +54,10 @@ function handleAddUserManagement(state)
   
   if(state.changes[0].type === "insert")
   {
-    const tmp = {...state.changes[0].data, isActive: checkBoxValue}
+    const tmp = {...state.changes[0].data, IsActive:checkBoxValue}
     insertUserManagement(tmp)
   }else if(state.changes[0].type === "update"){
-    const obj = {...state.changes[0].data, isActive : checkBoxValue}
+    const obj = {...state.changes[0].data, IsActive : checkBoxValue}
     console.log('stateedit')
     console.log(obj)
     updateUserManagement(obj);

@@ -4,6 +4,8 @@ import './registration.css';
 import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import Feedback from 'react-bootstrap/esm/Feedback';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const Registrationform = () => {
   const [name, setName] = useState("");
@@ -40,8 +42,11 @@ const Registrationform = () => {
       const url = "https://localhost:7034/api/Authenticate/register"
       axios.post(url, data).then((result) => {
         alert(result.data);
+        toast.success('Sucessfuly registred!',{theme: "dark"})
       }).catch((error) => {
         alert(error);
+        toast.error('Not registred!',{theme: "dark"})
+
       })
     }finally{
     }
@@ -94,7 +99,7 @@ const Registrationform = () => {
             </Feedback>
           </div>
           <div className="pt-3">
-            <button type="submit" className="btn btn-primary w-100">
+            <button onClick={notify} type="submit" className="btn btn-primary w-100">
               Submit
             </button>
           </div>
