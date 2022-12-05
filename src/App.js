@@ -13,8 +13,6 @@ import Navbar from "./Components/Navbar/Navbar";
 import Registrationform from "./pages/SignUp/registration";
 import Loginform from "./pages/LogIn/Login";
 import AuthService from "./services/auth.service";
-import { ToastContainer } from "react-toastify/dist/components";
-import { toast } from 'react-toastify';
 
 
 const App = () => {
@@ -49,7 +47,6 @@ const App = () => {
             <Route path="/login" element={<Loginform />} />
             <Route path="/registration" element={<Registrationform />} />
           </Routes>
-          <ToastContainer/>
         </>
       )}
     </>

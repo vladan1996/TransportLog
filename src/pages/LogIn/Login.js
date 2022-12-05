@@ -4,8 +4,7 @@ import AuthService from '../../services/auth.service';
 import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import Feedback from 'react-bootstrap/esm/Feedback';
-import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
+
 
 const Loginform = () => {
   const [name, setName] = useState("");
@@ -13,9 +12,7 @@ const Loginform = () => {
   const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
 
-  const notify = (alert) =>{
-    console.log(alert)
-  }
+  
 
   const handleNameChange = (value) => {
     setName(value);
@@ -37,11 +34,9 @@ const Loginform = () => {
       await AuthService.login(name, password).then(
         () => {
           navigate("/home")
-          toast.success('Successfully login!',{theme:"dark"});
           window.location.reload();
         },
         (error) => {
-          toast.error('Username or password is incorect!',{theme:"dark"});
           console.log(error);
         }
       );
@@ -85,7 +80,7 @@ const Loginform = () => {
             </Feedback>
           </div>
           <div className="pt-3">
-            <button type="submit" onClick={notify} className="btn btn-primary w-100">
+            <button type="submit" className="btn btn-primary w-100">
               Submit
             </button>
           </div>
