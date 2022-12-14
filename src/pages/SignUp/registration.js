@@ -4,6 +4,7 @@ import './registration.css';
 import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import Feedback from 'react-bootstrap/esm/Feedback';
+import { toast } from 'react-toastify';
 
 
 const Registrationform = () => {
@@ -41,9 +42,10 @@ const Registrationform = () => {
       setValidated(true);
       const url = "https://localhost:7034/api/Authenticate/register"
       axios.post(url, data).then((result) => {
-        alert(result.data);
+        toast.success("User is successfully logged in");
       }).catch((error) => {
-        alert(error);
+        toast.error("User was not successfully logged in");
+        
 
       })
     }finally{

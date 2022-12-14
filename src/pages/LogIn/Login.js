@@ -4,6 +4,7 @@ import AuthService from '../../services/auth.service';
 import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import Feedback from 'react-bootstrap/esm/Feedback';
+import { toast } from 'react-toastify';
 
 
 const Loginform = () => {
@@ -33,10 +34,12 @@ const Loginform = () => {
     try {
       await AuthService.login(name, password).then(
         () => {
+          toast.success("User is successfully logged in");
           navigate("/home")
           window.location.reload();
         },
         (error) => {
+          toast.error("User was not successfully logged in");
           console.log(error);
         }
       );

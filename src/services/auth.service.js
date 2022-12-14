@@ -40,4 +40,5 @@ const AuthService = {
         getCurrentUser
 }
 
+
 export default AuthService;
