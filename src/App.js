@@ -8,7 +8,6 @@ import SupportStatuses from "./pages/SupportStatuses/SupportStatuses";
 import Logout from "./pages/Logout/Logout";
 import UserManagment from "./pages/UserManagment/UserManagment";
 import Home from "./pages/Home/Home";
-import Home1 from "./pages/Home/Home1";
 import Docks from "./pages/Docks/Docks";
 import Navbar from "./Components/Navbar/Navbar";
 import Registrationform from "./pages/SignUp/registration";

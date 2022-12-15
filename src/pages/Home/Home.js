@@ -51,9 +51,7 @@ const [jobData, setJobData] = useState([]);
    const fieldsStatuses = { value: 'Id', text: 'Name' };
 
 function onActionBegin(args){
-console.log(args)
   if(args.requestType === 'eventCreate') {
-
     const job = {
       CustomerId: args.addedRecords[0].CustomerId[0],
       SupportStatusesId: args.addedRecords[0].SupportStatusesId[0],
@@ -87,8 +85,23 @@ console.log(args)
 }
 
 
+const fieldsValidation = {
+  subject: { name: 'Subject', validation: { required: true } },
+  startTime: { name: 'StartTime', validation: { required: true } },
+  endTime: { name: 'EndTime', validation: { required: true } },
+  location: { name: 'LoadType', validation: { required: true } },
+  DockId: { name: 'DockId', validation: { required: true } },
+  CustomerId: { name: 'CustomerId', validation: { required: true } },
+  SupportStatusesId: { name: 'SupportStatusesId', validation: { required: true } },
+  description: { name: 'LoadNo', validation: { required: true } },
+  NoPallets: { name: 'NoPallets', validation: { number: true, max: 5000 } },
+
+};
+
+console.log(fieldsValidation);
 
  function editorTemplate(props) {
+
        return (props !== undefined && Object.keys(props).length > 0 ? 
        <table className="custom-event-editor" style={{ width: '100%', padding: '5' }}><tbody>
 
@@ -136,7 +149,7 @@ console.log(args)
 
   return(
     <ScheduleComponent width='100%' height='90vh' currentView='Week' selectedDate={new Date(2022, 11, 12)} group={{ resources: ['DockName'] }}  showQuickInfo={false} editorTemplate={editorTemplate.bind(this)} actionBegin={onActionBegin.bind(this)} 
-    eventSettings={{dataSource:dataForJob }}>
+    eventSettings={{dataSource:dataForJob, fields : fieldsValidation }}>
       <ViewsDirective>
           <ViewDirective option='Day'/>
           <ViewDirective option='Week'/>
